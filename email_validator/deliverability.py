@@ -67,7 +67,7 @@ async def validate_email_deliverability(domain: str, domain_i18n: str, timeout: 
                 # If there was no A record, fall back to an AAAA record.
                 # (It's unclear if SMTP servers actually do this.)
                 try:
-                    rresponse = await dns_resolver.query(domain, dns.rdatatype.AAAA)
+                    response = await dns_resolver.query(domain, dns.rdatatype.AAAA)
                     deliverability_info["mx"] = [(0, str(r)) for r in response]
                     deliverability_info["mx_fallback_type"] = "AAAA"
 
